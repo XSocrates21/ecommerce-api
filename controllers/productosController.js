@@ -113,7 +113,7 @@ exports.agregarProductos = async (req, res) => {
   exports.actualizarProductosEstados = async (req, res) => {
     const id = req.params.id;
   
-    const sql = "UPDATE productos SET id_estado = 3 WHERE id_producto = ?";
+    const sql = "UPDATE productos SET id_estado = 4 WHERE id_producto = ?";
   
     try {
       await db.query(sql, [id]);
