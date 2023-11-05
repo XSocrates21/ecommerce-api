@@ -72,7 +72,7 @@ exports.listarUsuarios = async (req, res) => {
     }
   };
   
-  exports.eliminarUsuarios = async (req, res) => {
+  /*exports.eliminarUsuarios = async (req, res) => {
     const id = req.params.id;
     const sql = "DELETE FROM usuarios WHERE id_usuario = ?";
   
@@ -83,5 +83,18 @@ exports.listarUsuarios = async (req, res) => {
       res
         .status(500)
         .send({ mensaje: "Error al eliminar la categoria" }, { error: err });
+    }
+  };/** */
+
+  exports.actualizarProductosEstados = async (req, res) => {
+    const id = req.params.id;
+  
+    const sql = "UPDATE usuarios SET id_rol = 4 WHERE id_usuario = ?";
+  
+    try {
+      await db.query(sql, [id]);
+      res.status(200).send({ mensaje: "Usuario actualizado de rol" });
+    } catch (err) {
+      res.status(500).send({ error: err });
     }
   };
