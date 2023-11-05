@@ -96,7 +96,7 @@ exports.agregarProductos = async (req, res) => {
     }
   };
   
-  exports.eliminarProductos = async (req, res) => {
+  /*exports.eliminarProductos = async (req, res) => {
     const id = req.params.id;
     const sql = "DELETE FROM productos WHERE id_producto = ?";
   
@@ -108,4 +108,18 @@ exports.agregarProductos = async (req, res) => {
         .status(500)
         .send({ error: err });
     }
+  };/** */
+
+  exports.actualizarProductosEstados = async (req, res) => {
+    const id = req.params.id;
+  
+    const sql = "UPDATE productos SET id_estado = 3 WHERE id_producto = ?";
+  
+    try {
+      await db.query(sql, [id]);
+      res.status(200).send({ mensaje: "Producto actualizado de estado" });
+    } catch (err) {
+      res.status(500).send({ error: err });
+    }
   };
+  
