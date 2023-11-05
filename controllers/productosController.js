@@ -2,7 +2,22 @@ const db = require("../models/db");
 // GET /categorias
 
 exports.listarProductos = async (req, res) => {
-  const sql = "SELECT * FROM productos";
+  const sql = `
+  SELECT
+    productos.id_producto,
+    productos.nombre_producto,
+    productos.precio,
+    productos.descripcion,
+    productos.imagen,
+    productos.stock,
+    categorias.nombre_categoria,
+    marcas.nombre_marca,
+    estados.nombre_estado
+  FROM productos
+  INNER JOIN categorias ON productos.id_categoria = categorias.id_categoria
+  INNER JOIN marcas ON productos.id_marca = marcas.id_marca
+  INNER JOIN estados ON productos.id_estado = estados.id_estado
+`;
 
   try {
     const [productos, fields] = await db.query(sql);
@@ -14,7 +29,22 @@ exports.listarProductos = async (req, res) => {
 
 exports.listarProductosId = async (req, res) => {
   const id = req.params.id;
-  const sql = "SELECT * FROM productos WHERE id_producto = ?";
+  const sql = `
+  SELECT
+    productos.id_producto,
+    productos.nombre_producto,
+    productos.precio,
+    productos.descripcion,
+    productos.imagen,
+    productos.stock,
+    categorias.nombre_categoria,
+    marcas.nombre_marca,
+    estados.nombre_estado
+  FROM productos
+  INNER JOIN categorias ON productos.id_categoria = categorias.id_categoria
+  INNER JOIN marcas ON productos.id_marca = marcas.id_marca
+  INNER JOIN estados ON productos.id_estado = estados.id_estado
+ WHERE id_producto = ?`;
   //console.log(id);
 
   try {
