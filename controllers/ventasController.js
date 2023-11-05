@@ -1,7 +1,13 @@
 const db = require("../models/db");
 
 exports.listarVentas = async (req, res) => {
-    const sql = "SELECT * FROM ventas";
+    const sql = `
+    SELECT ventas.id_venta, ventas.cantidad, ventas.fecha_venta, usuarios.nombre_usuario, productos.nombre_producto
+    FROM ventas
+    INNER JOIN usuarios ON ventas.id_usuario = usuarios.id_usuario
+    INNER JOIN productos ON ventas.id_producto = productos.id_producto
+    ORDER BY ventas.id_venta ASC;  -- ASC para ordenar de manera ascendente
+  `;
   
     try {
       const [roles, fields] = await db.query(sql);
@@ -13,7 +19,13 @@ exports.listarVentas = async (req, res) => {
   
   exports.listarVentasId = async (req, res) => {
     const id = req.params.id;
-    const sql = "SELECT * FROM ventas WHERE id_venta = ?";
+    const sql = `
+    SELECT ventas.id_venta, ventas.cantidad, ventas.fecha_venta, usuarios.nombre_usuario, productos.nombre_producto
+    FROM ventas
+    INNER JOIN usuarios ON ventas.id_usuario = usuarios.id_usuario
+    INNER JOIN productos ON ventas.id_producto = productos.id_producto WHERE id_venta = ?
+    ORDER BY ventas.id_venta ASC;  -- ASC para ordenar de manera ascendente
+  `;
     //console.log(id);
   
     try {
