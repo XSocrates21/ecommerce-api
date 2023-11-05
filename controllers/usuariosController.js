@@ -5,6 +5,7 @@ exports.listarUsuarios = async (req, res) => {
     SELECT usuarios.id_usuario, usuarios.nombre_usuario, usuarios.apellido_usuario, usuarios.email, usuarios.password, roles.nombre_rol
     FROM usuarios
     INNER JOIN roles ON usuarios.id_rol = roles.id_rol
+    ORDER BY usuarios.id_usuario ASC;  -- ASC para ordenar de manera ascendente
   `;
   
     try {
@@ -21,6 +22,7 @@ exports.listarUsuarios = async (req, res) => {
     SELECT usuarios.id_usuario, usuarios.nombre_usuario, usuarios.apellido_usuario, usuarios.email, usuarios.password, roles.nombre_rol
     FROM usuarios
     INNER JOIN roles ON usuarios.id_rol = roles.id_rol WHERE id_usuario = ?
+    ORDER BY usuarios.id_usuario ASC;  -- ASC para ordenar de manera ascendente
   `;
     //console.log(id);
   
