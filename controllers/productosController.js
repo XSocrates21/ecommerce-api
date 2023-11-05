@@ -42,7 +42,7 @@ exports.agregarProductos = async (req, res) => {
     } catch (err) {
       res
         .status(500)
-        .send({ mensaje: "Error al insertar la categoria" }, { error: err });
+        .send({ mensaje: "Error al insertar el producto" }, { error: err });
     }
   };
   
@@ -54,11 +54,11 @@ exports.agregarProductos = async (req, res) => {
   
     try {
       await db.query(sql, [nombre_producto, precio , descripcion , imagen , stock , id_categoria, id_marca, id_estado, id]);
-      res.status(200).send({ mensaje: "Categoria actualizada" });
+      res.status(200).send({ mensaje: "Producto actualizado" });
     } catch (err) {
       res
         .status(500)
-        .send({ mensaje: "Error al actualizar la categoria" }, { error: err });
+        .send({ mensaje: "Error al actualizar el producto" }, { error: err });
     }
   };
   
@@ -68,7 +68,7 @@ exports.agregarProductos = async (req, res) => {
   
     try {
       await db.query(sql, [id]);
-      res.status(200).send({ mensaje: "Categoria eliminada" });
+      res.status(200).send({ mensaje: "Producto eliminada" });
     } catch (err) {
       res
         .status(500)
