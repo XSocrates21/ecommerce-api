@@ -1,7 +1,11 @@
 const db = require("../models/db");
 
 exports.listarUsuarios = async (req, res) => {
-    const sql = "SELECT * FROM usuarios";
+    const sql = `
+    SELECT usuarios.id_usuario, usuarios.nombre_usuario, usuarios.apellido_usuario, usuarios.email, usuarios.password, roles.nombre_rol
+    FROM usuarios
+    INNER JOIN roles ON usuarios.id_rol = roles.id_rol
+  `;
   
     try {
       const [roles, fields] = await db.query(sql);
@@ -13,7 +17,11 @@ exports.listarUsuarios = async (req, res) => {
   
   exports.listarUsuariosId = async (req, res) => {
     const id = req.params.id;
-    const sql = "SELECT * FROM usuarios WHERE id_usuario = ?";
+    const sql = `
+    SELECT usuarios.id_usuario, usuarios.nombre_usuario, usuarios.apellido_usuario, usuarios.email, usuarios.password, roles.nombre_rol
+    FROM usuarios
+    INNER JOIN roles ON usuarios.id_rol = roles.id_rol WHERE id_usuario = ?
+  `;
     //console.log(id);
   
     try {
