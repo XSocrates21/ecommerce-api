@@ -6,6 +6,6 @@ router.get("/", usuariosController.listarUsuarios);
 router.get("/:id", usuariosController.listarUsuariosId);
 router.post("/", usuariosController.agregarUsuarios);
 router.put("/:id", usuariosController.actualizarUsuarios);
-router.delete("/:id", usuariosController.eliminarUsuarios);
+router.delete("/:id", usuariosController.actualizarProductosEstados);
 
 module.exports = router;
