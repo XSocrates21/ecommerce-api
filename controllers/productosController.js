@@ -18,7 +18,6 @@ exports.listarProductos = async (req, res) => {
   INNER JOIN marcas ON productos.id_marca = marcas.id_marca
   INNER JOIN estados ON productos.id_estado = estados.id_estado
   ORDER BY productos.id_producto ASC;  -- ASC para ordenar de manera ascendente
-
 `;
 
   try {
