@@ -2,7 +2,7 @@ const db = require("../models/db");
 
 exports.listarVentas = async (req, res) => {
     const sql = `
-    SELECT ventas.id_venta, ventas.cantidad, ventas.fecha_venta, usuarios.nombre_usuario, productos.nombre_producto
+    SELECT ventas.id_venta, ventas.id_usuario, ventas.id_producto, ventas.cantidad, ventas.fecha_venta, usuarios.nombre_usuario, productos.nombre_producto
     FROM ventas
     INNER JOIN usuarios ON ventas.id_usuario = usuarios.id_usuario
     INNER JOIN productos ON ventas.id_producto = productos.id_producto
@@ -20,7 +20,7 @@ exports.listarVentas = async (req, res) => {
   exports.listarVentasId = async (req, res) => {
     const id = req.params.id;
     const sql = `
-    SELECT ventas.id_venta, ventas.cantidad, ventas.fecha_venta, usuarios.nombre_usuario, productos.nombre_producto
+    SELECT ventas.id_venta, ventas.id_usuario, ventas.id_producto, ventas.cantidad, ventas.fecha_venta, usuarios.nombre_usuario, productos.nombre_producto
     FROM ventas
     INNER JOIN usuarios ON ventas.id_usuario = usuarios.id_usuario
     INNER JOIN productos ON ventas.id_producto = productos.id_producto WHERE id_venta = ?
